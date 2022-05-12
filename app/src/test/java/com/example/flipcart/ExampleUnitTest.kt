@@ -1,4 +1,4 @@
-package com.example.flipcart
+package com.webecom
 
 import org.junit.Test
 

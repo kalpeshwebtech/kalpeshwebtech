@@ -1,4 +1,4 @@
-package com.example.flipcart.adapter
+package com.webecom.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,10 +12,10 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flipcart.R
-import com.example.flipcart.model.FilterChildModel
-import com.example.flipcart.model.FilterModel
-import com.example.flipcart.model.NavigationItemModel
+import com.webecom.R
+import com.webecom.model.FilterChildModel
+import com.webecom.model.FilterModel
+import com.webecom.model.NavigationItemModel
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.row_filter.view.*
 import kotlinx.android.synthetic.main.row_filter.view.lyMain

@@ -1,4 +1,4 @@
-package com.example.flipcart.activity
+package com.webecom.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.flipcart.MainActivity
-import com.example.flipcart.R
-import com.example.flipcart.utils.Utils
+import com.webecom.MainActivity
+import com.webecom.R
+import com.webecom.utils.Utils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

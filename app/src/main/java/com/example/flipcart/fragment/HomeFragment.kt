@@ -1,4 +1,4 @@
-package com.example.flipcart.fragment
+package com.webecom.fragment
 
 import android.os.Bundle
 import android.os.Handler
@@ -10,12 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import com.example.flipcart.R
-import com.example.flipcart.adapter.CategoryAdapter
-import com.example.flipcart.adapter.CustomAdapter
-import com.example.flipcart.adapter.CategoryProductAdapter
-import com.example.flipcart.model.CategoryModel
-import com.example.flipcart.model.ProductModel
+import com.webecom.R
+import com.webecom.adapter.CategoryAdapter
+import com.webecom.adapter.CustomAdapter
+import com.webecom.adapter.CategoryProductAdapter
+import com.webecom.model.CategoryModel
+import com.webecom.model.ProductModel
 import com.rd.PageIndicatorView
 import java.util.*
 

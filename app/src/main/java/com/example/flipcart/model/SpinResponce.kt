@@ -1,4 +1,4 @@
-package com.example.flipcart.model
+package com.webecom.model
 
 data class SpinResponce(
     val IsSuccess: Boolean,

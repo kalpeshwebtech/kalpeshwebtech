@@ -1,4 +1,4 @@
-package com.example.flipcart.adapter
+package com.webecom.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.flipcart.R
-import com.example.flipcart.activity.ProductActivity
-import com.example.flipcart.model.ProductModel
+import com.webecom.R
+import com.webecom.activity.ProductActivity
+import com.webecom.model.ProductModel
 import kotlinx.android.synthetic.main.row_product.view.*
 
 class CategoryProductAdapter(private var items: ArrayList<ProductModel>) :

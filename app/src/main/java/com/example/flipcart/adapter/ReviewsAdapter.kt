@@ -1,4 +1,4 @@
-package com.example.flipcart.adapter
+package com.webecom.adapter
 
 import android.content.Context
 import android.graphics.Color
@@ -12,10 +12,10 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flipcart.R
-import com.example.flipcart.model.FilterChildModel
-import com.example.flipcart.model.NavigationItemModel
-import com.example.flipcart.model.ReviewsModel
+import com.webecom.R
+import com.webecom.model.FilterChildModel
+import com.webecom.model.NavigationItemModel
+import com.webecom.model.ReviewsModel
 import kotlinx.android.synthetic.main.activity_filter.*
 import kotlinx.android.synthetic.main.row_nav_drawer.view.*
 import kotlinx.android.synthetic.main.row_nav_drawer.view.navigation_title

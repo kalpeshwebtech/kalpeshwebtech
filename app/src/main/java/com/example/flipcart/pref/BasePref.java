@@ -1,4 +1,4 @@
-package com.example.flipcart.pref;
+package com.webecom.pref;
 
 import android.content.SharedPreferences;
 import android.util.Log;

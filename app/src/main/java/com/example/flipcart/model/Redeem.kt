@@ -1,4 +1,4 @@
-package com.example.flipcart.model
+package com.webecom.model
 
 class Redeem(s: String, s1: String) {
 

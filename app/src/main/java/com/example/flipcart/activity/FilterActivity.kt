@@ -1,4 +1,4 @@
-package com.example.flipcart.activity
+package com.webecom.activity
 
 import android.os.Bundle
 import android.view.View
@@ -6,13 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flipcart.R
-import com.example.flipcart.adapter.FilterAdapter
-import com.example.flipcart.adapter.FilterChildAdapter
-import com.example.flipcart.model.FilterChildModel
-import com.example.flipcart.utils.ClickListener
-import com.example.flipcart.utils.RecyclerTouchListener
-import com.example.flipcart.utils.Utils
+import com.webecom.R
+import com.webecom.adapter.FilterAdapter
+import com.webecom.adapter.FilterChildAdapter
+import com.webecom.model.FilterChildModel
+import com.webecom.utils.ClickListener
+import com.webecom.utils.RecyclerTouchListener
+import com.webecom.utils.Utils
 import kotlinx.android.synthetic.main.activity_filter.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*

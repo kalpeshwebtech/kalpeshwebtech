@@ -1,12 +1,12 @@
-package com.example.flipcart.modelView
+package com.webecom.modelView
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.flipcart.model.LoginResponce
-import com.example.flipcart.pref.Prefkeys.*
-import com.example.flipcart.service.ApiPoints
-import com.example.flipcart.service.ApiService
-import com.example.flipcart.utils.SingleLiveEvent
+import com.webecom.model.LoginResponce
+import com.webecom.pref.Prefkeys.*
+import com.webecom.service.ApiPoints
+import com.webecom.service.ApiService
+import com.webecom.utils.SingleLiveEvent
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

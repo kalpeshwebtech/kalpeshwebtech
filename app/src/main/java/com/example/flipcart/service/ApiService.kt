@@ -1,4 +1,4 @@
-package com.example.flipcart.service
+package com.webecom.service
 
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient

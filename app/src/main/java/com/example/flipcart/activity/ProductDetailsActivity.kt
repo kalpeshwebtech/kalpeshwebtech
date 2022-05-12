@@ -1,4 +1,4 @@
-package com.example.flipcart.activity
+package com.webecom.activity
 
 import android.content.Intent
 import android.graphics.Paint
@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import com.example.flipcart.R
-import com.example.flipcart.adapter.CustomAdapter
-import com.example.flipcart.adapter.ReviewsAdapter
-import com.example.flipcart.utils.Utils
+import com.webecom.R
+import com.webecom.adapter.CustomAdapter
+import com.webecom.adapter.ReviewsAdapter
+import com.webecom.utils.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.rd.PageIndicatorView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -47,7 +47,7 @@ class ProductDetailsActivity : AppCompatActivity(), View.OnClickListener {
     private fun init() {
         imgBack.visibility = View.VISIBLE
         imgLike.visibility = View.VISIBLE
-        imgCart.visibility = View.VISIBLE
+        flBadge.visibility = View.VISIBLE
         headerText.text = ""
         recyclerView = findViewById(R.id.recyclerView)
         viewPager = findViewById(R.id.viewPager)
@@ -59,32 +59,66 @@ class ProductDetailsActivity : AppCompatActivity(), View.OnClickListener {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         recyclerView.isNestedScrollingEnabled = false
-        val reviewAdapter = ReviewsAdapter(items2,true)
+        val reviewAdapter = ReviewsAdapter(items2, true)
         recyclerView.adapter = reviewAdapter
 
         imgBack.setOnClickListener(this)
         lyMoreReview.setOnClickListener(this)
+        flBadge.setOnClickListener(this)
+        applyCard.setOnClickListener(this)
+        bookNow.setOnClickListener(this)
 
     }
 
     override fun onClick(v: View) {
         when (v.id) {
+            R.id.bookNow -> {
+                Utils.cartArray.clear()
+                updateCartBadge()
+            }
+            R.id.applyCard -> {
+                if (tvApplyCard.text.toString().lowercase() == "Go to Cart"){
+                    openCart()
+                }else {
+                    Utils.addToCart()
+                    tvApplyCard.text = "Go to Cart"
+                    updateCartBadge()
+                }
+            }
             R.id.imgBack -> {
                 onBackPressed()
             }
             R.id.imgLike -> {
 
             }
-            R.id.imgCart -> {
-                val intent= Intent(this, MyCartActivity::class.java)
-                startActivity(intent)
+            R.id.flBadge -> {
+                openCart()
             }
             R.id.lyMoreReview -> {
-                val intent=Intent(this,ReviewActivity::class.java)
-               startActivity(intent)
+                val intent = Intent(this, ReviewActivity::class.java)
+                startActivity(intent)
             }
             else -> {
             }
+        }
+    }
+
+    private fun openCart() {
+        val intent = Intent(this, MyCartActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateCartBadge()
+    }
+    private fun updateCartBadge() {
+        val count = Utils.getCart().size
+        if (count > 0) {
+            tvBadge.visibility = View.VISIBLE
+            tvBadge.text = "$count"
+        } else {
+            tvBadge.visibility = View.GONE
         }
     }
 

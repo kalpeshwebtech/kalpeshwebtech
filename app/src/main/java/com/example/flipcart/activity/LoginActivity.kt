@@ -1,4 +1,4 @@
-package com.example.flipcart.activity
+package com.webecom.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,9 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.flipcart.MainActivity
-import com.example.flipcart.R
-import com.example.flipcart.utils.Utils
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
+import com.webecom.MainActivity
+import com.webecom.R
+import com.webecom.utils.Utils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -27,7 +32,7 @@ import java.util.*
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
-
+    private var callbackManager: CallbackManager? = null
     val RC_SIGN_IN: Int = 1
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var mGoogleSignInOptions: GoogleSignInOptions
@@ -103,6 +108,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager?.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -165,7 +171,25 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 dashBoardRedirect()
             }
             R.id.cardFBLogin -> {
-                dashBoardRedirect()
+                callbackManager = CallbackManager.Factory.create()
+                LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"))
+                LoginManager.getInstance().registerCallback(callbackManager,
+                    object : FacebookCallback<LoginResult> {
+                        override fun onSuccess(loginResult: LoginResult) {
+                            Log.d("MainActivity", "Facebook token: " + loginResult.accessToken.token)
+
+                        }
+
+                        override fun onCancel() {
+                            Log.d("MainActivity", "Facebook onCancel.")
+
+                        }
+
+                        override fun onError(error: FacebookException) {
+                            Log.d("MainActivity", "Facebook onError.")
+
+                        }
+                    })
             }
             /*R.id.cardGLogin->{
                 val intent=Intent(this,MainActivity::class.java)

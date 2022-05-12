@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <androidx.cardview.widget.CardView
+       xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+       android:foreground="?android:attr/selectableItemBackground"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardElevation="@dimen/_3sdp">
+        <RelativeLayout
+            android:padding="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchBar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_toLeftOf="@+id/lyFilter"
+                android:background="@drawable/search_background_border"
+                android:iconifiedByDefault="false"
+                android:paddingStart="-5dp"
+                android:paddingLeft="-5dp"
+                android:theme="@style/SearchViewStyle"
+                app:defaultQueryHint="Search for Product"
+                app:queryHint="Search for Product" />
+            <LinearLayout
+                android:id="@+id/lyFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                android:gravity="center">
+                <ImageView
+                    android:src="@drawable/ic_filter"
+                    android:tint="@color/black"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    tools:ignore="UseAppTint" />
+                <TextView
+                    android:text="Filters"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:background="@color/trans_gray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:background="@color/trans_gray"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

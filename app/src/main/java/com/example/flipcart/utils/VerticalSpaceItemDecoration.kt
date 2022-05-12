@@ -1,4 +1,4 @@
-package com.example.flipcart.utils
+package com.webecom.utils
 
 import android.graphics.Rect
 import android.view.View

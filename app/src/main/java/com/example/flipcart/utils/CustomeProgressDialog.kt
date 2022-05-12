@@ -1,11 +1,11 @@
-package com.example.flipcart.utils
+package com.webecom.utils
 
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
-import com.example.flipcart.R
+import com.webecom.R
 import kotlinx.android.synthetic.main.dialog_progress.*
 
 class CustomeProgressDialog(context: Context?) : Dialog(context!!) {

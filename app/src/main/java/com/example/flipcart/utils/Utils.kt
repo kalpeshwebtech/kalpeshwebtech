@@ -1,4 +1,4 @@
-package com.example.flipcart.utils
+package com.webecom.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -6,15 +6,13 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.provider.Settings
 import android.widget.Toast
-import com.example.flipcart.R
-import com.example.flipcart.model.FilterChildModel
-import com.example.flipcart.model.FilterModel
-import com.example.flipcart.model.ProductModel
-import com.example.flipcart.model.ReviewsModel
+import com.webecom.R
+import com.webecom.model.*
 import java.util.regex.Pattern
 
 class Utils {
     companion object {
+        var cartArray = ArrayList<ProductModel>()
         fun isInternet(context: Context): Boolean {
             var result = false
             val connectivityManager =
@@ -83,6 +81,7 @@ class Utils {
         fun showMessage(context: Context, it: String?) {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         }
+
         fun isValidEmail(email: String): Boolean {
             val emailPattern = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,3}"
             val pat: Pattern = Pattern.compile(emailPattern)
@@ -92,6 +91,21 @@ class Utils {
                 pat.matcher(email).matches()
             }
         }
+
+        fun getNavigation(): ArrayList<NavigationItemModel> {
+            val items = arrayListOf(
+                NavigationItemModel(R.drawable.ic_home, "Home", false),
+                NavigationItemModel(R.drawable.ic_music, "Music", true),
+                NavigationItemModel(R.drawable.ic_movie, "Movies", false),
+                NavigationItemModel(R.drawable.ic_book, "Books", false),
+                NavigationItemModel(R.drawable.ic_book, "My Orders", false),
+                NavigationItemModel(R.drawable.ic_profile, "Profile", true),
+                NavigationItemModel(R.drawable.ic_settings, "Settings", true),
+                NavigationItemModel(R.drawable.ic_social, "Like us on facebook", false)
+            )
+            return items
+        }
+
         fun getDummyFilter(): ArrayList<FilterModel> {
             var items2 = arrayListOf(
                 FilterModel(
@@ -208,24 +222,33 @@ class Utils {
             )
             return items2
         }
-        fun getReviewsFilter():ArrayList<String>{
-            val items2 = arrayListOf("All Reviews","5 Rating","4 Rating","3 Rating","2 Rating","1 Rating")
+
+        fun getReviewsFilter(): ArrayList<String> {
+            val items2 = arrayListOf(
+                "All Reviews",
+                "5 Rating",
+                "4 Rating",
+                "3 Rating",
+                "2 Rating",
+                "1 Rating"
+            )
             return items2
         }
+
         fun getReviews(): ArrayList<ReviewsModel> {
             val items2 = arrayListOf(
                 ReviewsModel(
                     "4",
                     "Value-for-money",
                     "Rajib Pain, Bankura District",
-                    "156","20",
+                    "156", "20",
                     "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
                     imgarray
                 ),
                 ReviewsModel(
                     "5",
                     "Wonderful",
-                    "Pallab Saha, Bhatpara","230","122",
+                    "Pallab Saha, Bhatpara", "230", "122",
                     "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
                     imgarray
                 ),
@@ -233,7 +256,7 @@ class Utils {
                     "3",
                     "Good choice",
                     "Kaushik Pal, North Barrackpur",
-                    "134","45",
+                    "134", "45",
                     "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary",
                     imgarray
                 ),
@@ -241,7 +264,7 @@ class Utils {
                     "2",
                     "Mind-blowing purchase",
                     "Aniket Kumar, okaro District",
-                    "35","6",
+                    "35", "6",
                     "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old",
                     imgarray
                 ),
@@ -249,7 +272,7 @@ class Utils {
                     "4",
                     "Must buy!",
                     "CicilyS, Pathanamthitta District",
-                    "470","90",
+                    "470", "90",
                     "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form",
                     imgarray
                 ),
@@ -257,39 +280,56 @@ class Utils {
                     "3",
                     "Best in the market!",
                     "Debasis Patnaik, Bhubaneswa",
-                    "111","12",
+                    "111", "12",
                     "Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
                     imgarray
                 ),
-                ReviewsModel("2",
+                ReviewsModel(
+                    "2",
                     "Really Nice",
                     "Tularam dansana, Jharsuguda District",
-                    "436","68",
+                    "436", "68",
                     "If you are going to use a passage of Lorem Ipsum",
-                    imgarray),
+                    imgarray
+                ),
             )
             return items2
         }
-fun getProduct():ArrayList<ProductModel>{
-    val items2= arrayListOf(
-        ProductModel("1", R.drawable.p1, "Top Offer","No Cost EMI",1),
-        ProductModel("2", R.drawable.p3, "Mobile & Tablets","Best selling product",1),
-        ProductModel("3", R.drawable.p5, "Electronics & Accessories","F-Assured",7),
-        ProductModel("4", R.drawable.p7, "TVs & Appliances","4 Stars & Above",2),
-        ProductModel("5", R.drawable.p2, "Top Offer","No Cost EMI",1),
-        ProductModel("6", R.drawable.p4, "Mobile & Tablets","Best selling product",4),
-        ProductModel("7", R.drawable.p6, "Electronics & Accessories","F-Assured",1),
-        ProductModel("8", R.drawable.p1, "TVs & Appliances","4 Stars & Above",6),
-        ProductModel("9", R.drawable.p5, "Electronics & Accessories","F-Assured",1),
-        ProductModel("10", R.drawable.p7, "TVs & Appliances","4 Stars & Above",2),
-        ProductModel("11", R.drawable.p2, "Top Offer","No Cost EMI",4),
-        ProductModel("12", R.drawable.p4, "Mobile & Tablets","Best selling product",3),
-    )
-    return items2
-}
-        fun getSortBy():ArrayList<String>{
-            val item2= arrayListOf("Relevance", "Popularity", "Price - Low to High","Price - High to Low","Newest First")
-        return item2
+
+        fun getProduct(): ArrayList<ProductModel> {
+            val items2 = arrayListOf(
+                ProductModel("1", R.drawable.p1, "Top Offer", "No Cost EMI", 1),
+                ProductModel("2", R.drawable.p3, "Mobile & Tablets", "Best selling product", 1),
+                ProductModel("3", R.drawable.p5, "Electronics & Accessories", "F-Assured", 7),
+                ProductModel("4", R.drawable.p7, "TVs & Appliances", "4 Stars & Above", 2),
+                ProductModel("5", R.drawable.p2, "Top Offer", "No Cost EMI", 1),
+                ProductModel("6", R.drawable.p4, "Mobile & Tablets", "Best selling product", 4),
+                ProductModel("7", R.drawable.p6, "Electronics & Accessories", "F-Assured", 1),
+                ProductModel("8", R.drawable.p1, "TVs & Appliances", "4 Stars & Above", 6),
+                ProductModel("9", R.drawable.p5, "Electronics & Accessories", "F-Assured", 1),
+                ProductModel("10", R.drawable.p7, "TVs & Appliances", "4 Stars & Above", 2),
+                ProductModel("11", R.drawable.p2, "Top Offer", "No Cost EMI", 4),
+                ProductModel("12", R.drawable.p4, "Mobile & Tablets", "Best selling product", 3),
+            )
+            return items2
+        }
+
+        fun getSortBy(): ArrayList<String> {
+            val item2 = arrayListOf(
+                "Relevance",
+                "Popularity",
+                "Price - Low to High",
+                "Price - High to Low",
+                "Newest First"
+            )
+            return item2
+        }
+        fun getCart(): ArrayList<ProductModel> {
+            return cartArray
+        }
+        fun addToCart(){
+            val rnds = (0..getProduct().size-1).random()
+            cartArray.add(getProduct()[rnds])
         }
         var imgarray = arrayListOf(
             "https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",

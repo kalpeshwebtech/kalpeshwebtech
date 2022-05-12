@@ -1,4 +1,4 @@
-package com.example.flipcart.adapter
+package com.webecom.adapter
 
 import androidx.viewpager.widget.ViewPager
 
@@ -10,7 +10,7 @@ import android.widget.ImageView
 
 import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
-import com.example.flipcart.R
+import com.webecom.R
 
 
 class CustomAdapter(

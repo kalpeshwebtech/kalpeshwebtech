@@ -746,6 +746,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_30sdp">
                         <TextView
+                            android:id="@+id/tvApplyCard"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="Add to cart"

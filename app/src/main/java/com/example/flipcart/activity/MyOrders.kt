@@ -6,24 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.webecom.R
 import com.webecom.adapter.BottomSheetAdapter
-import com.webecom.adapter.CategoryProductAdapter
-import com.webecom.adapter.ProductAdapter
-import com.webecom.model.ProductModel
+import com.webecom.adapter.MyOrderAdapter
 import com.webecom.utils.RecyclerItemClickListener
-import com.webecom.utils.SpacesItemDecoration
 import com.webecom.utils.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_product.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class ProductActivity : AppCompatActivity(), View.OnClickListener {
+class MyOrders : AppCompatActivity(), View.OnClickListener {
     private lateinit var recyclerView: RecyclerView
+    private lateinit var searchBar: SearchView
     lateinit var bottomSheet : BottomSheetDialog
 
     var lastSelected=0
@@ -31,7 +28,7 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
     val array =Utils.getSortBy()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product)
+        setContentView(R.layout.activity_my_orders)
         init()
     }
 
@@ -39,19 +36,22 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
         imgBack.visibility = View.VISIBLE
         imgLike.visibility = View.VISIBLE
         flBadge.visibility = View.VISIBLE
-        headerText.text = "Product List"
+        headerText.text = "My Orders"
+
+        searchBar =findViewById(R.id.searchBar)
+        searchBar.setIconifiedByDefault(false)
+        searchBar.queryHint = resources.getString(R.string.search_order)
 
         recyclerView = findViewById(R.id.recyclerView)
-        var productAdapter= ProductAdapter(items2);
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
+        val orderAdapter= MyOrderAdapter(items2);
+        recyclerView.layoutManager = LinearLayoutManager(this)
         //recyclerView.addItemDecoration(SpacesItemDecoration(5))
-        recyclerView.adapter=productAdapter
+        recyclerView.adapter=orderAdapter
         recyclerView.isNestedScrollingEnabled = false;
 
         imgBack.setOnClickListener(this)
         imgLike.setOnClickListener(this)
         flBadge.setOnClickListener(this)
-        lySort.setOnClickListener(this)
         lyFilter.setOnClickListener(this)
     }
 
@@ -65,12 +65,11 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
                 val intent= Intent(this, MyCartActivity::class.java)
                 startActivity(intent)
             }
-            R.id.lySort->{
-                sortDialog()
-            }
+//            R.id.lySort->{
+//                sortDialog()
+//            }
             R.id.lyFilter->{
-                val intent= Intent(this, FilterActivity::class.java)
-               startActivity(intent)
+                sortDialog()
             }
             else -> {}
         }
@@ -79,12 +78,11 @@ class ProductActivity : AppCompatActivity(), View.OnClickListener {
     private fun sortDialog() {
         bottomSheet = BottomSheetDialog(this,R.style.BottomSheetStyle)
         val mylayout = findViewById<LinearLayout>(R.id.sheet)
-        val viewDailog = LayoutInflater.from(this).inflate(R.layout.bottomsheet_dailog,mylayout, false)
+        val viewDailog = LayoutInflater.from(this).inflate(R.layout.order_filter_dailog,mylayout, false)
         bottomSheet.setContentView(viewDailog)
         bottomSheet.show()
 
-
-        var recyclerView = bottomSheet.findViewById<RecyclerView>(R.id.recyclerView)
+        val recyclerView = bottomSheet.findViewById<RecyclerView>(R.id.recyclerView)
         val linearLayoutManager = LinearLayoutManager(this)
         recyclerView?.layoutManager = linearLayoutManager
         recyclerView?.adapter =  BottomSheetAdapter(this, array ,lastSelected);

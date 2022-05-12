@@ -1,4 +1,4 @@
-package com.example.flipcart.adapter
+package com.webecom.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flipcart.R
+import com.webecom.R
 
 
 class BottomSheetAdapter(var ctx: Context, var array: ArrayList<String>,var selected:Int) : RecyclerView.Adapter<BottomSheetAdapter.ViewHolder>() {

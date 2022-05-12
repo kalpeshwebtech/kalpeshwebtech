@@ -1,4 +1,4 @@
-package com.example.flipcart.activity
+package com.webecom.activity
 
 import android.app.Application
 import android.content.Context

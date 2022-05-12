@@ -1,4 +1,4 @@
-package com.example.flipcart.adapter
+package com.webecom.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flipcart.R
+import com.webecom.R
 import kotlinx.android.synthetic.main.row_spinner.view.*
 
 class SpinnerAdapter(val context: Context,private var items: Array<String>) : BaseAdapter(){

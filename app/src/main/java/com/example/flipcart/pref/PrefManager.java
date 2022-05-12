@@ -1,4 +1,4 @@
-package com.example.flipcart.pref;
+package com.webecom.pref;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,7 +7,7 @@ import android.content.SharedPreferences.Editor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.flipcart.model.LoginData;
+import com.webecom.model.LoginData;
 
 @SuppressWarnings("unused")
 public class PrefManager extends BasePref {

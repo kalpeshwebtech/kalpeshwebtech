@@ -1,10 +1,10 @@
-package com.example.flipcart.service
+package com.webecom.service
 
-import com.example.flipcart.model.LoginResponce
-import com.example.flipcart.model.RedeemOptionResponce
-import com.example.flipcart.model.RedeemPointsResponce
-import com.example.flipcart.model.SpinResponce
-import com.example.flipcart.pref.Prefkeys.*
+import com.webecom.model.LoginResponce
+import com.webecom.model.RedeemOptionResponce
+import com.webecom.model.RedeemPointsResponce
+import com.webecom.model.SpinResponce
+import com.webecom.pref.Prefkeys.*
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

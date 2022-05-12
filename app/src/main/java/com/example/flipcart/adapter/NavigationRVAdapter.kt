@@ -1,4 +1,4 @@
-package com.example.flipcart.adapter
+package com.webecom.adapter
 
 import android.content.Context
 import android.graphics.Color
@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flipcart.R
-import com.example.flipcart.model.NavigationItemModel
+import com.webecom.R
+import com.webecom.model.NavigationItemModel
 import kotlinx.android.synthetic.main.row_nav_drawer.view.*
 
 class NavigationRVAdapter(private var items: ArrayList<NavigationItemModel>, private var currentPos: Int) :

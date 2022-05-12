@@ -1,4 +1,4 @@
-package com.example.flipcart.model
+package com.webecom.model
 
 class Transaction(s: String, s1: String) {
 

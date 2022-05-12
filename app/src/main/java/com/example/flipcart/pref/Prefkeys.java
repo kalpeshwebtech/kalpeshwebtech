@@ -1,4 +1,4 @@
-package com.example.flipcart.pref;
+package com.webecom.pref;
 
 /*
  * Constant class for all the keys used in the Shared preferences

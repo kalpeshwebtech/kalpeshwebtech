@@ -1,4 +1,4 @@
-package com.example.flipcart.activity
+package com.webecom.activity
 
 import android.content.Intent
 import android.graphics.Paint
@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
-import com.example.flipcart.R
-import com.example.flipcart.adapter.*
-import com.example.flipcart.utils.Utils
+import com.webecom.R
+import com.webecom.adapter.*
+import com.webecom.utils.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.rd.PageIndicatorView
 import kotlinx.android.synthetic.main.activity_filter.*
@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 class MyCartActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var recyclerView: RecyclerView
-    private var items2= Utils.getProduct()
+    private var items2= Utils.getCart()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_cart2)

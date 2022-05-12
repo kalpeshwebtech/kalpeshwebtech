@@ -57,6 +57,7 @@
         <LinearLayout
             android:id="@+id/lyAction"
             android:visibility="visible"
+            android:gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -74,17 +75,39 @@
                 android:tint="@color/white"
                 android:padding="@dimen/_3sdp"
                 tools:ignore="UseAppTint" />
-            <ImageView
-                android:id="@+id/imgCart"
+            <FrameLayout
+                android:id="@+id/flBadge"
                 android:visibility="gone"
-                android:onClick="onClick"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:src="@drawable/ic_cart"
-                android:tint="@color/white"
-                android:padding="@dimen/_3sdp"
-                tools:ignore="UseAppTint" />
+                style="?attr/actionButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:focusable="true">
+
+                <ImageView
+                    android:tint="@color/white"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_cart"
+                    tools:ignore="UseAppTint" />
+
+                <TextView
+                    android:id="@+id/tvBadge"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_gravity="right|end|top"
+                    android:layout_marginEnd="-5dp"
+                    android:layout_marginRight="-5dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/badge_border"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:textColor="@android:color/white"
+                    android:text="0"
+                    android:textSize="10sp"/>
+
+            </FrameLayout>
             <TextView
                 android:id="@+id/tvClear"
                 android:text="Clear Filters"

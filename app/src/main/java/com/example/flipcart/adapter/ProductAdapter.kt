@@ -1,4 +1,4 @@
-package com.example.flipcart.adapter
+package com.webecom.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -10,10 +10,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.flipcart.R
-import com.example.flipcart.activity.ProductActivity
-import com.example.flipcart.activity.ProductDetailsActivity
-import com.example.flipcart.model.ProductModel
+import com.webecom.R
+import com.webecom.activity.ProductActivity
+import com.webecom.activity.ProductDetailsActivity
+import com.webecom.model.ProductModel
 import kotlinx.android.synthetic.main.activity_product_details.*
 import kotlinx.android.synthetic.main.row_product.view.*
 

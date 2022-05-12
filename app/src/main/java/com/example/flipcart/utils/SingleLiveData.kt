@@ -1,4 +1,4 @@
-package com.example.flipcart.utils
+package com.webecom.utils
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner

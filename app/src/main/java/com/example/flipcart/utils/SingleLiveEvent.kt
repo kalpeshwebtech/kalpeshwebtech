@@ -1,4 +1,4 @@
-package com.example.flipcart.utils
+package com.webecom.utils
 
 import android.util.Log
 import androidx.annotation.MainThread

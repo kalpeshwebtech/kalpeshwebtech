@@ -1,4 +1,4 @@
-package com.example.flipcart.adapter
+package com.webecom.adapter
 
 import android.content.Context
 import android.graphics.Paint
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flipcart.R
-import com.example.flipcart.model.ProductModel
+import com.webecom.R
+import com.webecom.model.ProductModel
 import kotlinx.android.synthetic.main.row_cart_product.view.*
 import android.widget.AdapterView
 import androidx.core.content.ContextCompat
@@ -35,7 +35,7 @@ class CartProductAdapter(private var items: ArrayList<ProductModel>) :
     }
 
     override fun getItemCount(): Int {
-        return 2//itemList.count()
+        return itemList.count()
     }
 
     override fun onBindViewHolder(holder: NavigationItemViewHolder, position: Int) {

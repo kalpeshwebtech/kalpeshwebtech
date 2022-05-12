@@ -2,10 +2,10 @@ package com.pti.coindhan.modelView
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.flipcart.model.SpinResponce
-import com.example.flipcart.service.ApiPoints
-import com.example.flipcart.service.ApiService
-import com.example.flipcart.utils.SingleLiveEvent
+import com.webecom.model.SpinResponce
+import com.webecom.service.ApiPoints
+import com.webecom.service.ApiService
+import com.webecom.utils.SingleLiveEvent
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

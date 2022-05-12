@@ -1,4 +1,4 @@
-package com.example.flipcart.activity
+package com.webecom.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.example.flipcart.R
-import com.example.flipcart.utils.Utils
+import com.webecom.R
+import com.webecom.utils.Utils
 import kotlinx.android.synthetic.main.activity_forgot.*
 import java.util.*
 

@@ -1,18 +1,18 @@
-package com.example.flipcart.activity
+package com.webecom.activity
 
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.flipcart.R
-import com.example.flipcart.adapter.FilterChildAdapter
-import com.example.flipcart.adapter.ReviewFilterAdapter
-import com.example.flipcart.adapter.ReviewsAdapter
-import com.example.flipcart.model.FilterChildModel
-import com.example.flipcart.utils.ClickListener
-import com.example.flipcart.utils.RecyclerTouchListener
-import com.example.flipcart.utils.Utils
+import com.webecom.R
+import com.webecom.adapter.FilterChildAdapter
+import com.webecom.adapter.ReviewFilterAdapter
+import com.webecom.adapter.ReviewsAdapter
+import com.webecom.model.FilterChildModel
+import com.webecom.utils.ClickListener
+import com.webecom.utils.RecyclerTouchListener
+import com.webecom.utils.Utils
 import kotlinx.android.synthetic.main.activity_filter.*
 import kotlinx.android.synthetic.main.activity_filter.recyclerView
 import kotlinx.android.synthetic.main.activity_review.*
