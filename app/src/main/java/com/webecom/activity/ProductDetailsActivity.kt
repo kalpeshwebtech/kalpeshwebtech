@@ -1,5 +1,6 @@
 package com.webecom.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
@@ -13,12 +14,15 @@ import com.webecom.adapter.CustomAdapter
 import com.webecom.adapter.ReviewsAdapter
 import com.webecom.utils.Utils
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.razorpay.Checkout
+import com.razorpay.PaymentResultListener
 import com.rd.PageIndicatorView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_product_details.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.json.JSONObject
 
-class ProductDetailsActivity : AppCompatActivity(), View.OnClickListener {
+class ProductDetailsActivity : AppCompatActivity(), View.OnClickListener, PaymentResultListener {
 
     lateinit var bottomSheet: BottomSheetDialog
     private lateinit var viewPager: ViewPager
@@ -41,6 +45,7 @@ class ProductDetailsActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details)
+        Checkout.preload(applicationContext)
         init()
     }
 
@@ -73,8 +78,8 @@ class ProductDetailsActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.bookNow -> {
-                Utils.cartArray.clear()
-                updateCartBadge()
+                rezorpayPayment()
+
             }
             R.id.applyCard -> {
                 if (tvApplyCard.text.toString().lowercase() == "Go to Cart"){
@@ -145,5 +150,44 @@ class ProductDetailsActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
     }
+    private fun rezorpayPayment() {
+        val activity: Activity = this
+        val co = Checkout()
+        co.setKeyID("rzp_test_p8WcOpfzbvXB1H");
+        try {
+            val options = JSONObject()
+            options.put("name","Razorpay Corp")
+            options.put("description","Demoing Charges")
+            options.put("image","https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
+            options.put("theme.color", "#3399cc");
+            options.put("currency","INR");
+            //options.put("order_id", "order_DBJOWzybf0sJbb");
+            options.put("amount","50000")//pass amount in currency subunits
 
+            val retryObj =  JSONObject()
+            retryObj.put("enabled", true);
+            retryObj.put("max_count", 4);
+            options.put("retry", retryObj);
+
+            val prefill = JSONObject()
+            prefill.put("email","kalpeshdaki@gmail.com")
+            prefill.put("contact","8000143669")
+
+            options.put("prefill",prefill)
+            co.open(activity,options)
+        }catch (e: Exception){
+            Utils.showMessage(this,  "Error in payment: "+ e.message)
+            e.printStackTrace()
+        }
+    }
+
+    override fun onPaymentSuccess(p0: String?) {
+        Utils.showMessage(this,  "Payment Successfully:\n" + p0.toString())
+        Utils.cartArray.clear()
+        updateCartBadge()
+    }
+
+    override fun onPaymentError(p0: Int, p1: String?) {
+        Utils.showMessage(this,  "Error in payment:\n" + p1.toString())
+    }
 }

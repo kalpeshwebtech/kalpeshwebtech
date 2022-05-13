@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "579277551065",
+    "project_id": "onlineshopin-9206e",
+    "storage_bucket": "onlineshopin-9206e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579277551065:android:9eafbcb00fe263ad94d5c8",
+        "android_client_info": {
+          "package_name": "com.webecom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579277551065-inle2qn5fna0elr3s52s7igpcnon073b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.webecom",
+            "certificate_hash": "2a044cae9b78bfc7ecd1e65026382fd57ad25108"
+          }
+        },
+        {
+          "client_id": "579277551065-dt29h70hf0n440ipqr153431gtk1gblv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD09R8QooJlXXKIKIeLlZzVMn9dqBL3WBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579277551065-dt29h70hf0n440ipqr153431gtk1gblv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
