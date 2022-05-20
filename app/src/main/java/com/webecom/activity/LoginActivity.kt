@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.NewInstanceFactory.Companion.instance
 import com.facebook.*
 import com.facebook.login.LoginBehavior
 import com.facebook.login.LoginManager
@@ -25,6 +26,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -33,7 +35,6 @@ import com.webecom.utils.Utils.Companion.isInternet
 import com.webecom.utils.Utils.Companion.showMessage
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONException
-import java.net.URLEncoder.encode
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
@@ -45,8 +46,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     val RC_SIGN_IN: Int = 1
     lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var mGoogleSignInOptions: GoogleSignInOptions
-    private lateinit var firebaseAuth: FirebaseAuth
-
+    private lateinit var auth: FirebaseAuth
     private val map = HashMap<String, String>()
     private lateinit var cardLogin: CardView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +57,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         initialize()
         initObservables()
         checkHashKey()
+        configureGoogleSignIn()
+        try {
+            FirebaseApp.getInstance()
+        } catch (e: IllegalStateException) {
+            //Firebase not initialized automatically, do it manually
+            FirebaseApp.initializeApp(this)
+        }
+        auth = FirebaseAuth.getInstance()
+        if (auth==null){
+            Log.e("mAuth", "null")
+        }else{
+            Log.e("mAuth", "not null")
+        }
     }
     fun checkHashKey() {
         val info: PackageInfo
@@ -83,8 +96,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 //        prefManager = PrefManager.getInstance(this)
         getSupportActionBar()?.hide()
 //        customeProgressDialog = CustomeProgressDialog(this)
-        configureGoogleSignIn()
-        firebaseAuth = FirebaseAuth.getInstance()
+
         cardLogin = findViewById(R.id.cardLogin)
 
         cardLogin.setOnClickListener(this)
@@ -116,20 +128,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-//    fun onClick(view: View) {
-//        if (isInternet(this)) {
-//            signIn()
-//        } else {
-//            startActivity(Intent(this@LoginActivity, NoInternet::class.java))
-//        }
-//    }
-
     private fun configureGoogleSignIn() {
-        mGoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(this, mGoogleSignInOptions)
+        val gso =
+            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN) //.requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
     private fun signIn() {
@@ -140,23 +144,44 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         callbackManager?.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account)
-            } catch (e: ApiException) {
-                //showMessage(this,"Google sign in failed:")
-            }
+        if (requestCode ==RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
         }
     }
-
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            Log.e("google", Gson().toJson(account))
+            val fullname = account.displayName
+            val parts = fullname!!.split("\\s+").toTypedArray()
+            var fname = ""
+            var lname = ""
+            fname = parts[0]
+            if (parts.size > 1) {
+                lname = parts[1]
+            }
+            val socialId = account.id
+            val email = account.email
+            Log.e("accountdetail",account.displayName+"\n"+account.email)
+            val profile_pic = if (account.photoUrl != null) account.photoUrl.toString() else ""
+            //mAuth!!.signOut()
+            mGoogleSignInClient!!.signOut()
+                .addOnCompleteListener(
+                    this
+                ) { }
+            val provider = "google"
+        } catch (e: ApiException) {
+            Log.e("TAG", "signInResult:failed code=" + e.statusCode)
+            e.printStackTrace()
+        }
+    }
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Log.e("account", Gson().toJson(acct))
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
+        auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                val user: FirebaseUser = firebaseAuth.getCurrentUser()!!
+                val user: FirebaseUser = auth.getCurrentUser()!!
 //                map.put(Prefkeys.NAME, user.displayName.toString())
 //                map.put(Prefkeys.EMAIL, user.email.toString())
 //                if (user.photoUrl != null)
@@ -282,7 +307,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                                 disconnectFromFacebook()
                                 LoginManager.getInstance().setLoginBehavior(LoginBehavior.WEB_ONLY)
                                     .logOut()
-                                showMessage(this@LoginActivity,fullname+"\n"+email+"\n"+socialId)
                                 val provider = "facebook"
                                 /*socialLoginProcess(
                                     SocialModel(
